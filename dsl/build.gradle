@@ -168,8 +168,12 @@ publishing {
 }
 
 signing {
+  useGpgCmd()
   sign publishing.publications.mavenJava
 }
+
+project.ext.'signing.gnupg.keyName' = System.getenv('GOCD_GPG_KEY_ID')
+project.ext.'signing.gnupg.passphrase' = System.getenv('GOCD_GPG_PASSPHRASE')
 
 project.ext.'signing.password' = System.getenv('GOCD_GPG_PASSPHRASE')
 project.ext.'signing.keyId' = System.getenv('GOCD_GPG_KEY_ID')
